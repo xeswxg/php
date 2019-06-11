@@ -1,3 +1,3 @@
 <?php
-  inclue_once("index.html");
+  incldue_once("index.html");
 ?>
