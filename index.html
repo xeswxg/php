@@ -1,66 +1,82 @@
-<html>
 <head>
-  <title>My first styled page</title>
-  <link rel="stylesheet" href="mystyle.css">
-  <style type="text/css">
-    body {
-      padding-left: 11em;
-      font-family: Georgia, "Times New Roman",
-        Time,serif;
-      color: purple;
-      backgruond-color: #d8da3d }
-    ul.navbar {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      position: absolute;
-      top: 2em;
-      left: 1em;
-      width: 9em }
-    h1 {
-      font-family: Helvetica, Geneva, Arial,
-        SunSans-Regular, sans-serif }
-    ul.navbar li {
-      background: white;
-      margin 0.5em 0;
-      padding: 0.3em;
-      border-right: 1em solid black }
-    ul.navbar a {
-      text-decoration: none }
-    a:link {
-      color: blue }
-    a:visited {
-      color: purple }
-    address {
-      margin-top: 1em;
-      padding-top: 1em;
-      border-top: thindotted }
-  </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ตัวอย่าง โปรแกรมคำนวณหาค่าดัชนีมวลกาย(BMI)</title>
+<style type="text/css">
+<!--
+body {
+    background-color:#600;
+    color:#FFF;
+}
+-->
+</style></head>
+
+<body>
+    <form action="process.php" method="post">
+<table width="600" border="0" align="center">
+<tr>
+      <td colspan="2">
+      <div align="center"><h2>โปรแกรมคำนวณหาค่าดัชนีมวลกาย(BMI)</h2></div></td>
+  </tr>
+    <tr>
+      <td width="200"><div align="right">น้ำหนัก : </div></td>
+      <td width="212"><input type="text" name="weight" size="20" maxlength="100" />กิโลกรัม</td>
+    </tr>
+    <tr>
+      <td><div align="right">ส่วนสูง : </div></td>
+      <td><input type="text" name="height" size="20" maxlength="100" value="" />ซ.ม.</td>
+    </tr>     
+    <tr>
+      <td colspan="2"> <div align="center"><input type="submit" value="คำนวณ" /></div></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="font-size:14px; color:#F00;" align="center"></td>
+    </tr>
+  </table>
+<div align="center"></div>
+</body>
+</html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ประมวลผล โปรแกรมคำนวณหาค่าดัชนีมวลกาย(BMI)</title>
 </head>
-  
-  <body bgcolor=#66FFFF>
-Thanakit Sangwang No.3 M.5/2
-   <ul class="navbar">
-     <li><a href="index.html">Home page</a></li>
-     <li><a href="musings.html"555555555>Musings</a></li>
-     <li><a href="town.html">My town</a></li>
-     <li><a href="link.html">Links</a></li>
-     <li><a href="cornhub.html">Grade</a></li>
-     <li><a href="bmi.html">BMI</a></li>
-   </ul>
-    
-    <h1>My first styled page</h1>
-    
-    <p>Welcome to my styled paghe!</p>
-    
-    <p>It lacks images, but at least it has style.
-      And it has links, even if they don't go
-      anywhere&hellip;</p>
-    <p>There should be more here,but I don't know
-      what yet.</p>
-    
-    <address>Made 5 April 2004<br>
-      bymyself.</address>
-    
+
+<body>
+<div align="center">
+  <?php
+  $weight=$_POST['weight'];
+  $height=$_POST ['height'] ;
+
+  $height=$height/100;
+ 
+  $bmi=$weight/($height*$height);
+ 
+ 
+  if($bmi<=18.50){
+       $c="น้ำหนักน้อย / ผอม";
+       $s="มากกว่าคนปกติ";
+  }else if($bmi>18.50 && $bmi<22.90){
+       $c="ปกติ (สุขภาพดี)";   
+       $s="เท่าคนปกติ";
+  }else if($bmi>23 && $bmi<24.90){
+       $c="ท้วม / โรคอ้วนระดับ 1";   
+       $s="อันตรายระดับ 1";
+  }else if($bmi>25 && $bmi<29.90){
+       $c="อ้วน / โรคอ้วนระดับ 2";   
+       $s="อันตรายระดับ 2";
+  }else if($bmi>30){
+       $c="อ้วนมาก / โรคอ้วนระดับ 3";
+       $s="อันตรายระดับ 3";   
+  }
+   ?>
+   <h2>โปรแกรมคำนวณหาค่าดัชนีมวลกาย(BMI)</h2>
+   
+   <p align="center">
+   <b>BMI : </b><?php echo $bmi;?> bmi<br /><br />
+   <b>อยู่ในเกณท์ : </b><?php echo $c;?><br /><br />
+   <b>ภาวะเสี่ยงต่อโรค : </b><?php echo $s;?>
+   
+   </p>   
+ 
+</div>
 </body>
 </html>
